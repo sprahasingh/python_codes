@@ -41,7 +41,7 @@ print(choices[user_choice])
 print("Computer choice:")
 print(choices[computer_choice])
 if user_choice == computer_choice:
-    print("Draw")
+    print("It's a Draw")
 elif user_choice == 0 and computer_choice == 2:
     print("You win")
 elif user_choice == 2 and computer_choice == 0:
