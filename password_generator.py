@@ -8,26 +8,25 @@ nr_letters= int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-l = [0] * nr_letters
-s = [0] * nr_symbols
-n = [0] * nr_numbers
-for i in range (0,nr_letters):
-    l[i] = letters[random.randint(0,25)]
-for i in range (0,nr_symbols):
-    s[i] = symbols[random.randint(0,8)]
-for i in range (0,nr_numbers):
-    n[i] = numbers[random.randint(0,9)]
 password=""
-pass_set = l + s + n
+for i in range (0,nr_letters):
+    random_letter = random.choice(letters)
+    password+=random_letter
+for i in range (0,nr_symbols):
+    random_symbol = random.choice(symbols)
+    password+=random_symbol
+for i in range (0,nr_numbers):
+    random_number = random.choice(numbers)
+    password+=random_number
 print("In order password:")
-for i in pass_set:
-    password+=str(i)
 print(password)
 
-pass_list = list(pass_set)
-random.shuffle(pass_list)
-print("Out of order password:")
+pass_set = [0] * (nr_letters+nr_numbers+nr_symbols)
+for i in range (0,(nr_letters+nr_numbers+nr_symbols)):
+    pass_set[i]=password[i]
 password=""
-for i in pass_list:
+random.shuffle(pass_set)
+for i in pass_set:
     password+=str(i)
+print("Out of order password:")
 print(password)
