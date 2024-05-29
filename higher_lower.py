@@ -14,6 +14,12 @@ def game(level,a,b,score,prev) :
             else:
                 print("Enter valid input")
                 continue
+    def is_correct(a_count, b_count, guess) :
+        if a_count > b_count :
+            return guess == 'A'
+        else :
+            return guess == 'B'
+
     while True:
         print(f"Current level: {level}, Current score: {score}")
         if level == 1:
@@ -24,32 +30,34 @@ def game(level,a,b,score,prev) :
         print(f"\nCompare A: {a['name']}, {a['description']}, from {a['country']}")
         print(vs)
         print(f"Against B: {b['name']}, {b['description']}, from {b['country']}\n")
+        a_count = a['follower_count']
+        b_count = b['follower_count']
         while True:
             guess = input("Who has more followers? Type 'A' or 'B':\n").upper()
-            if (guess == 'A' and a['follower_count'] > b['follower_count']) or (guess == 'B' and a['follower_count'] < b['follower_count']) :
-                print("You Win")
-                if a['follower_count'] < b['follower_count'] :
-                    prev.append(a['name'])
-                    a = b
-                elif a['follower_count'] > b['follower_count'] :
-                    prev.append(b['name'])
-                if len(prev) == len(data)-1:
-                    print("CONGRATULATIONS!! YOU WIN THE GAME!!")
-                level+=1
-                score+=1
-                replay(level,a,b,score,prev)
-                    
-            elif (guess == 'A' and a['follower_count'] < b['follower_count']) or (guess == 'B' and a['follower_count'] > b['follower_count']) :
-                print("You lose")
-                prev=[]
-                print(f"Final score: {score}")
-                level = 1
-                score = 0
-                replay(level,a,b,score,prev)
-            else:
+            if guess in {'A','B'} :
+                break
+            else :
                 print("Enter valid input")
                 continue
-            break
+        if is_correct(a_count,b_count,guess) :
+            print("You Win")
+            if a_count < b_count :
+                prev.append(a['name'])
+                a = b
+            elif a_count > b_count :
+                prev.append(b['name'])
+            if len(prev) == len(data)-1:
+                print("CONGRATULATIONS!! YOU WIN THE GAME!!")
+            level+=1
+            score+=1
+            replay(level,a,b,score,prev)
+        else :
+            print("You lose")
+            print(f"Final score: {score}")
+            prev=[]
+            level = 1
+            score = 0
+            replay(level,a,b,score,prev)
 prev = []
 a = {}
 b = {}
