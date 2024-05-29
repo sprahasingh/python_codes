@@ -1,17 +1,17 @@
 import random
 import clear
+import blackjack_art
 cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J']
 card_dict = {'A': 11, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'K': 10, 'Q':10, 'J': 10}
-def generate_card():
-    chosen_card = cards[random.randint(0,(len(cards)-1))]
-    return chosen_card
+def deal_card():
+    return random.choice(cards)
 def play_again(game_num,user_win,comp_win):
     while True:
-        again = input("Do you want to play again? Enter 'y' to play again, 'n' to exit\n").lower()
+        again = input("Do you want to play again? Enter '1' to play again, '0' to exit\n").lower()
         clear.clear_console()
-        if again == 'y' :
+        if again == '1' :
             game(game_num,user_win,comp_win)
-        elif again == 'n':
+        elif again == '0':
             print(f"Total games: {game_num} Your wins: {user_win}  Comp wins: {comp_win}")
             if user_win > comp_win :
                 print("Congratulations! You Win")
@@ -30,82 +30,81 @@ def game(game_num,user_win,comp_win):
     user_cards = []
     i = 1
     j = 1
-    comp_cards.append(generate_card())
-    comp_cards.append(generate_card())
+    for _ in range(2) :
+        comp_cards.append(deal_card())
+        user_cards.append(deal_card())
     print(f"Comp cards are ['{comp_cards[0]}', 'X']")
-    comp_sum = card_dict[comp_cards[0]] + card_dict[comp_cards[1]]
-    if comp_sum == 22 :
+    comp_score = card_dict[comp_cards[0]] + card_dict[comp_cards[1]]
+    if comp_score == 22 :
         card_dict["A"] = 1
-        comp_sum = 12
-    user_cards.append(generate_card())
-    user_cards.append(generate_card())
-    print(f"Your cards are {user_cards}")
-    user_sum = card_dict[user_cards[0]] + card_dict[user_cards[1]]
-    if user_sum == 22 :
+        comp_score = 12
+    print(f"Your cards are {user_cards}")   
+    user_score = card_dict[user_cards[0]] + card_dict[user_cards[1]]
+    if user_score == 22 :
         card_dict["A"] = 1
-        user_sum = 12   
-    print(f"Your total sum is {user_sum}")
-    if user_sum == 21 :
-        print(f"Comp cards: {comp_cards}, Comp total: {comp_sum}")
-        print(f"Your cards: {user_cards}, Your total: {user_sum}")
-        if comp_sum == 21 :
+        user_score = 12   
+    print(f"Your score is {user_score}")
+    if user_score == 21 :
+        if comp_score == 21 :
+            print(f"Comp final hand: {comp_cards}, Comp final score: {comp_score}")
+            print(f"Your final hand: {user_cards}, Your final score: {user_score}")
             print("Push")
-            print(f"Your wins: {user_win}\nComp wins: {comp_win}")
         else:
             print("BlackJack. You Win")
             user_win+=1
         print(f"Your wins: {user_win}\nComp wins: {comp_win}")
         game_num+=1
         play_again(game_num,user_win,comp_win)
-    while user_sum < 21 :
-        choice = input("Enter 'hit' to take an extra card, Enter 'stand' to stop taking cards\n").lower()
-        if choice == 'hit' :
+    while user_score < 21 :
+        choice = input("Enter '1' to take an extra card, Enter '0' to stop taking cards\n").lower()
+        if choice == '1' :
             i+=1
-            user_cards.append(generate_card())
-            if user_cards[i] == "A" and user_sum > 10 :
+            user_cards.append(deal_card())
+            if user_cards[i] == "A" and user_score > 10 :
                 card_dict["A"] = 1
             print(f"Your cards are {user_cards}")
-            user_sum+=card_dict[user_cards[i]]
-            print(f"Your total sum is {user_sum}")
-        elif choice == 'stand':
+            user_score+=card_dict[user_cards[i]]
+            print(f"Your score is {user_score}")
+        elif choice == '0':
             break
         else:
             print("Enter valid input")
             continue
-        if user_sum > 21 :
-            print("Bust(You)\nYou lose")
+        if user_score > 21 :
+            print("Bust (You)\nYou lose")
             comp_win+=1
             print(f"Your wins: {user_win}\nComp wins: {comp_win}")
             game_num+=1
             play_again(game_num,user_win,comp_win)
 
-    while comp_sum <17 :
+    while comp_score <17 :
         j+=1
-        comp_cards.append(generate_card())
-        comp_sum+=card_dict[comp_cards[j]]
-        if comp_sum > 21 :
-            print(f"Comp cards: {comp_cards}, Comp total: {comp_sum}")
-            print(f"Your cards: {user_cards}, Your total: {user_sum}")
-            print("Bust(Comp)\nYou win")
+        comp_cards.append(deal_card())
+        comp_score+=card_dict[comp_cards[j]]
+        if comp_score > 21 :
+            print(f"Comp final hand: {comp_cards}, Comp final score: {comp_score}")
+            print(f"Your final hand: {user_cards}, Your final score: {user_score}")
+            print("Bust (Comp)\nYou win")
             user_win+=1
             print(f"Your wins: {user_win}\nComp wins: {comp_win}")
             game_num+=1
             play_again(game_num,user_win,comp_win)
-    print(f"Comp cards: {comp_cards}, Comp total: {comp_sum}")
-    print(f"Your cards: {user_cards}, Your total: {user_sum}")
-    if user_sum > comp_sum :
+    print(f"Comp final hand: {comp_cards}, Comp final score: {comp_score}")
+    print(f"Your final hand: {user_cards}, Your final score: {user_score}")
+    if user_score > comp_score :
         print("You win")
         user_win+=1
         print(f"Your wins: {user_win}\nComp wins: {comp_win}")
-    elif comp_sum > user_sum:
+    elif comp_score > user_score:
         print("You lose")
         comp_win+=1
         print(f"Your wins: {user_win}\nComp wins: {comp_win}")
-    elif user_sum == comp_sum:
+    elif user_score == comp_score:
         print("Push")
         print(f"Your wins: {user_win}\nComp wins: {comp_win}")
     game_num+=1
     play_again(game_num,user_win,comp_win)
+print(blackjack_art.logo)
 print("WELCOME TO BLACKJACK")
 hit = input("Press ENTER to start")
 game_num = 1
