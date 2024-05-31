@@ -8,4 +8,3 @@ def clear_console():
     # For Mac and Linux
     else:
         os.system('clear')
-
