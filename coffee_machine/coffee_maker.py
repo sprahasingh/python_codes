@@ -1,6 +1,3 @@
-from menu import Menu, MenuItem
-
-
 class CoffeeMaker:
     """Models the machine that makes the coffee"""
     def __init__(self):
