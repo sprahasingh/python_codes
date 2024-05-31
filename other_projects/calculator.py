@@ -1,21 +1,23 @@
-def calculate(first_num,second_num,operator):
+def calculate(float_first_num, float_second_num, str_operator):
     """This function is used to perform operations between two numbers"""
     ans = 0
-    if operator == '+':
-        ans = first_num + second_num
+    if str_operator == '+':
+        ans = float_first_num + float_second_num
         return ans
-    elif operator == '-':
-        ans = first_num - second_num
+    elif str_operator == '-':
+        ans = float_first_num - float_second_num
         return ans
-    elif operator == '*':
-        ans = first_num * second_num
+    elif str_operator == '*':
+        ans = float_first_num * float_second_num
         return ans
-    elif operator == '/':
-        if second_num == 0 :
+    elif str_operator == '/':
+        if float_second_num == 0:
             raise ZeroDivisionError("Division by zero is not allowed")
-        ans = first_num / second_num
+        ans = float_first_num / float_second_num
         return ans
-    print(f"{first_num} {operator} {second_num} = {ans}")
+    print(f"{float_first_num} {str_operator} {float_second_num} = {ans}")
+
+
 flag = 'n'
 answer = 0
 while True:
@@ -29,11 +31,12 @@ while True:
         print("Enter valid operator. Please use +, -, *, or /.")
         continue
     try:
-        answer = round(calculate(first_num,second_num,operator),2)
+        answer = round(calculate(first_num, second_num, operator), 2)
         print(answer)
         while True:
-            flag = input(f"Type 'y' to continue calculating with {answer}, type 'n' to start a new calculation, type 'exit' to exit\n")
-            if flag not in {'y', 'n','exit'}:
+            flag = input(f"Type 'y' to continue calculating with {answer}, type 'n' to start a new calculation, type "
+                         f"'exit' to exit\n")
+            if flag not in {'y', 'n', 'exit'}:
                 print("Invalid input")
                 continue
             elif flag == 'exit':
@@ -43,4 +46,3 @@ while True:
     except ZeroDivisionError:
         print("Division by zero is not allowed.")
         continue
-        
