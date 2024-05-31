@@ -19,7 +19,7 @@ def game(level, a, score, prev):
     def is_correct(int_a_count, int_b_count, str_guess):
         if int_a_count > int_b_count:
             return str_guess == 'A'
-        else :
+        else:
             return str_guess == 'B'
 
     while True:
@@ -48,12 +48,12 @@ def game(level, a, score, prev):
                 a = b
             elif a_count > b_count:
                 prev.append(b['name'])
-            if len(prev) == len(data)-1:
+            if len(prev) == len(data) - 1:
                 print("CONGRATULATIONS!! YOU WIN THE GAME!!")
             level += 1
             score += 1
             replay(level, a, score, prev)
-        else :
+        else:
             print("You lose")
             print(f"Final score: {score}")
             prev = []
