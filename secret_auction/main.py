@@ -1,6 +1,7 @@
 import clear
 import art
-print(secret_aution_program_art.logo)
+
+print(art.logo)
 print("Welcome to the secret auction program.")
 auction = {}
 max_bid = 0
@@ -22,7 +23,7 @@ while True:
                 max_bid = auction[i]
                 max_bid_holder = i
                 draw = 0
-        if draw == 1 :
+        if draw == 1:
             print("Two or more people have same maximum bid. Try again!")
             while True:
                 again = input("Press 'yes' to start again, Press 'no' to exit\n")
