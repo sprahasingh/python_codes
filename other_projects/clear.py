@@ -1,5 +1,6 @@
 import os
 
+
 def clear_console():
     # For Windows
     if os.name == 'nt':
@@ -7,4 +8,3 @@ def clear_console():
     # For Mac and Linux
     else:
         os.system('clear')
-
