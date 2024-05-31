@@ -13,7 +13,9 @@ def coffee_machine(available, profit):
 
     def print_report():
         print(
-            f"Water: {available['water']}ml\nMilk: {available['milk']}ml\nCoffee: {available['coffee']}g\nMoney: ${profit}")
+            f"Water: {available['water']}ml\nMilk: {available['milk']}ml\nCoffee: {available['coffee']}g\n"
+            f"Money: ${profit}"
+        )
 
     def take_money(value_money_type):
         while True:
@@ -21,9 +23,8 @@ def coffee_machine(available, profit):
             try:
                 money_value = float(money)
                 return money_value
-            except:
+            except ValueError:
                 print("Enter valid input")
-                continue
 
     def check_money(dict_coffee_detail, value_money_paid):
         if value_money_paid >= dict_coffee_detail['cost']:
