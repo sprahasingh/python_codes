@@ -1,5 +1,5 @@
-from higher_lower_art import logo, vs
-from higher_lower_data import data
+from art import logo, vs
+from data import data
 import random
 
 def game(level,a,b,score,prev) :

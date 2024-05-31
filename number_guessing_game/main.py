@@ -1,5 +1,5 @@
 import random
-import number_guessing_game_art
+import art
 print("Welcome to the Number Guessing Game!")
 def replay():
     while True:

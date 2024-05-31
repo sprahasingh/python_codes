@@ -1,5 +1,5 @@
 import clear
-import secret_aution_program_art
+import art
 print(secret_aution_program_art.logo)
 print("Welcome to the secret auction program.")
 auction = {}

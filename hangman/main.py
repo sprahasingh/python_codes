@@ -1,6 +1,6 @@
 import random
-import hangman_art
-from hangman import hangman_words
+import art
+from main import hangman_words
 
 print(hangman_art.logo)
 word_list = hangman_words.word_list
