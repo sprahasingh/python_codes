@@ -1,6 +1,7 @@
-student_heights = input("Enter heights separated by ','\n").split(',')
-for n in range(0, len(student_heights)):
-    student_heights[n] = int(student_heights[n])
+heights = input("Enter heights separated by ','\n").split(',')
+student_heights = []
+for n in range(0, len(heights)):
+    student_heights.append(int(heights[n]))
 total_sum = 0
 num = 0
 for height in student_heights:
