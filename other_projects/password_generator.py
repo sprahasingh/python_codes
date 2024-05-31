@@ -10,6 +10,7 @@ print("Welcome to the PyPassword Generator!")
 nr_letters = int(input("How many letters would you like in your password?\n"))
 nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
+password_length = nr_letters + nr_numbers + nr_symbols
 
 password = ""
 for i in range(0, nr_letters):
@@ -24,9 +25,9 @@ for i in range(0, nr_numbers):
 print("In order password:")
 print(password)
 
-pass_set = [0] * (nr_letters + nr_numbers + nr_symbols)
-for i in range(0, (nr_letters + nr_numbers + nr_symbols)):
-    pass_set[i] = password[i]
+pass_set = [''] * password_length
+for i in range(0, password_length):
+    pass_set.append(password[i])
 password = ""
 random.shuffle(pass_set)
 for i in pass_set:
