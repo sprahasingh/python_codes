@@ -7,15 +7,13 @@ money_machine = MoneyMachine()
 while True:
     coffee_options = menu.get_items()
     coffee_type = input(f"“What would you like? {coffee_options}:\n").lower()
-    coffee_details = {}
     if coffee_type == 'off':
         exit()
     elif coffee_type == 'report':
         coffee_maker.report()
-    elif menu.find_drink(coffee_type):
-        for item in menu.menu:
-            if item.name == coffee_type:
-                coffee_details = item
+        money_machine.report()
+    else:
+        coffee_details = menu.find_drink(coffee_type)
         if coffee_maker.is_resource_sufficient(coffee_details):
             if money_machine.make_payment(coffee_details.cost):
                 coffee_maker.make_coffee(coffee_details)
