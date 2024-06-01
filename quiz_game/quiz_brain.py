@@ -20,7 +20,7 @@ class QuizBrain:
         self.ques_number += 1
         self.answer = self.ques_picked.answer
         # self.ques_asked.append(self.ques_picked.text)
-        print(f'{self.ques_picked.text} (True/False)?')
+        print(f'Q.{self.ques_number}: {self.ques_picked.text} (True/False)?')
 
     def get_answer(self):
         """
