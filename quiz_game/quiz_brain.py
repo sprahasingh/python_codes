@@ -22,7 +22,7 @@ class QuizBrain:
                 print("Enter valid input: True/False")
         return ques_picked.answer, input_ans
 
-    def check_answer(self, input_ans, ques_ans):
+    def check_answer(self, ques_ans, input_ans):
         """
         checks if the answer given by user is correct
         """
