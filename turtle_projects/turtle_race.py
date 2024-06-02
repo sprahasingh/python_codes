@@ -34,13 +34,22 @@ def start_race(x):
                 return turtle.pencolor()
 
 
-make_race_line(200, 200)
+screen.setup(width=600, height=400)
+make_race_line(200, 170)
 create_turtles()
-guess_color = screen.textinput("Make your bet", "Which color turtle you think will win the race?\n""Options: 'red', "
-                                                "'green', 'coral', 'purple', 'cyan', 'yellow', 'blue'\n")
+guess_color = screen.textinput("Make your bet", "Which color turtle you think will win the race?\n""Options: 'red',"
+                                                "'green', 'coral', 'purple', 'cyan', 'yellow', 'blue'\n").lower()
+while True:
+    if guess_color not in colors:
+        guess_color = screen.textinput("Enter valid color",
+                                       "Which color turtle you think will win the race?\n""Options: 'red',"
+                                       "'green', 'coral', 'purple', 'cyan', 'yellow', 'blue'\n").lower()
+    else:
+        break
 winner_color = start_race(200)
 if guess_color == winner_color:
-    print(f"Congratulations!! You win :)\n{guess_color} turtle won the race")
+    print(f"Congratulations!! You win :)\n{guess_color.upper()} turtle won the race")
 else:
     print("Ahhhhhh!! You lose :(")
-    print(f"The winner turtle was {winner_color} and your bet was on {guess_color}")
+    print(f"The winner turtle was {winner_color.upper()} and your bet was on {guess_color.upper()}")
+screen.exitonclick()
