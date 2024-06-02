@@ -22,9 +22,11 @@ while '_' in display and lives > 0:
         else:
             break
     for i in range(len(chosen_word)):
-        if chosen_word[i] == guess:
+        if guess == chosen_word[i]:
             display_count = sum(1 for char in display if char == guess)
+            # stores number of time guessed word is present in display word
             word_count = sum(1 for char in chosen_word if char == guess)
+            # stores number of times the guessed word is present in chosen word
             if guess not in guessed_words:
                 guessed_words.append(guess)
             if guess in display and display_count == word_count:
@@ -47,7 +49,7 @@ while '_' in display and lives > 0:
         key = 0
 
 if lives > 0:
-    print("Congratulations You Win")
+    print("Congratulations You Win!!")
 else:
-    print("Better Luck Next Time")
-    print(f"The word was {chosen_word}")
+    print("Better Luck Next Time :)")
+print(f"The word was '{chosen_word}'")
