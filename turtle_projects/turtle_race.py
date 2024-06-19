@@ -17,8 +17,7 @@ def make_race_line(x, y):
 
 def create_turtles():
     for i in range(len(colors)):
-        turtle = t.Turtle()
-        turtle.shape("turtle")
+        turtle = t.Turtle(shape="turtle")
         turtle.color(colors[i])
         turtle.penup()
         turtle.setpos(-250, 150 - 50 * i)
