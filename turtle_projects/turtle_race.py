@@ -20,7 +20,7 @@ def create_turtles():
         turtle = t.Turtle(shape="turtle")
         turtle.color(colors[i])
         turtle.penup()
-        turtle.setpos(-250, 150 - 50 * i)
+        turtle.setpos(-230, 150 - 50 * i)
         turtles.append(turtle)
         turtle.speed(0)
 
@@ -33,7 +33,7 @@ def start_race(x):
                 return turtle.pencolor()
 
 
-screen.setup(width=600, height=400)
+screen.setup(width=500, height=400)
 make_race_line(200, 170)
 create_turtles()
 guess_color = screen.textinput("Make your bet", "Which color turtle you think will win the race?\n""Options: 'red',"
